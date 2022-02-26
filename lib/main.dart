@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'ScreenPage/LoginPage.dart';
 import 'ScreenPage/SignUpPage.dart';
+import 'ViewPages/HomePage.dart';
+import 'ipset.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SignUpPage(),
+      home: const ipSet(),
     );
   }
 }

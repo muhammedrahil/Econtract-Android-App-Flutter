@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 
-class TextFeild extends StatelessWidget {
+class TextFeild extends StatefulWidget {
   final String texthind;
    TextFeild({ Key? key, required this.texthind }) : super(key: key);
- 
+
+  @override
+  State<TextFeild> createState() => _TextFeildState();
+}
+
+class _TextFeildState extends State<TextFeild> {
+
+
+  
 
   @override
   Widget build(BuildContext context) {
     return  Padding(
                 padding: const EdgeInsets.only(top: 40, left: 30, right: 30),
                 child: TextField(
+                   
                   obscureText: true,
                   autofocus: false,
                   decoration: InputDecoration(
@@ -22,7 +31,7 @@ class TextFeild extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5.0),
                         borderSide:
                             BorderSide(color: Colors.black, width: 3.0)),
-                    hintText: texthind,
+                    hintText: widget.texthind,
                   ),
                 ),
               );
