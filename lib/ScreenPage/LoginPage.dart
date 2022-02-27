@@ -1,9 +1,10 @@
+import 'dart:convert';
+
 import 'package:econtractor/funtion.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
-  
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -12,7 +13,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String url = '';
-   var data,output="";
+  var data, output = "";
 
   Future<bool> _onWillPop() async {
     return (await showDialog(
@@ -136,18 +137,27 @@ class _LoginPageState extends State<LoginPage> {
                         var uname = nameController.text.toString();
                         var passd = passwordController.text.toString();
                         print(_formKey.currentState!.validate());
-                        if(!_formKey.currentState!.validate()){
+                        if (!_formKey.currentState!.validate()) {
                           print("not dataaaaaaaaas");
-                        }
-                        else{
-                          SharedPreferences pref =await SharedPreferences.getInstance();
+                        } else {
+                          SharedPreferences pref =
+                              await SharedPreferences.getInstance();
                           print(uname);
-                          final ipaddress =pref.getString('ip') ?? '';
+                          final ipaddress = pref.getString('ip') ?? '';
                           print(ipaddress);
-                          url = 'http://' + ipaddress + ':5000/login?uname=' + uname + "&password=" +passd;
+                          url = 'http://' +
+                              ipaddress +
+                              ':5000/login?uname=' +
+                              uname +
+                              "&password=" +
+                              passd;
                           print(url);
                           data = await fetchdata(url);
                           print(data);
+                          var decoded = jsonDecode(data.replaceAll("'", "\""));
+                          print(decoded);
+                          output = decoded['res'].toString();
+                          print(output);
                         }
                       },
                       child: const Text('LOGIN'),
