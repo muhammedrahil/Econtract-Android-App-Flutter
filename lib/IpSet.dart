@@ -60,7 +60,7 @@ class _ipSetState extends State<ipSet> {
                 child: ElevatedButton(
                   onPressed: () async {
                      var ip=IPController.text.toString();
-                  print(ip);
+            print(ip);
                   SharedPreferences pref= await  SharedPreferences.getInstance();
                   pref.setString('ip', ip);
                   Navigator.push(
